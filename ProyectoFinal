@@ -1,0 +1,448 @@
+// ProyectoFinal.cpp : Defines the entry point for the console application. 
+2 // 
+3 
+ 
+4 #include "stdafx.h" 
+5 #include <iostream> 
+6 #include "conio.h" 
+7 #include "stdlib.h" 
+8 #define MAX 100 
+9 #include <cstring> 
+10 
+ 
+11 using namespace std; 
+12 
+ 
+13 void principal(); 
+14 void Opcion1(); 
+15 void menu1 (float &tot, int &cantidad3, int &cantidad2, int &cantidad1); 
+16 void confirmar1(float tot, int cantidad1, int cantidad2, int cantidad3); 
+17 void cliente1(); 
+18 void delivery1(float&tot); 
+19 float total(); 
+20 void atencion1(); 
+21 void fecha(int &d, int&m); 
+22 void hora (int &h,int &min); 
+23 void compra1 (float tot); 
+24 
+ 
+25 float tot=0; 
+26 
+ 
+27 void main () 
+28 { 
+29 	 
+30 	principal(); 
+31 	getch(); 
+32 	system("cls"); 
+33 	 
+34 } 
+35 
+ 
+36 
+ 
+37 
+ 
+38 void principal() 
+39 { 
+40 	int opcion, opcion2; 
+41 	do { 
+42 		cout<<"\t\t ORDERY \n"; 
+43 		cout<<"\t\t ====== \n"; 
+44 		cout<<"Seleccionar cafeteria \n"; 
+45 		cout<<"1. Mi cafe\n"; 
+46 		cout<<"0. Salir\n"; 
+47 		cin>>opcion; 
+48 		switch (opcion) 
+49 		{ 
+50 		case 1:	system("cls"); 
+51 				Opcion1(); 
+52 				break; 
+53 		case 0: cout<<"Saliendo del menu"; 
+54 				getch(); 
+55 				exit(0); 
+56 				break; 
+57 		default:cout<<"ERROR de opcion"; 
+58 				break; 
+59 		} 
+60 		getch (); 
+61 		system("cls"); 
+62 		}while (opcion!=0); 
+63 	getch(); 
+64 } 
+65 void Opcion1 () 
+66 { 
+67 	int opcion2,cantidad1,cantidad2,cantidad3; 
+68 	do 
+69 		{	 
+70 		cout<<"Escoja una opcion \n"<<endl; 
+71 		cout<<"1. Realizar pedido\n"; 
+72 		cout<<"2. Atencion al cliente\n"; 
+73 		cout<<"0. Volver atras\n"; 
+74 		cin>>opcion2; 
+75 		 
+76 			switch (opcion2) 
+77 			{ 
+78 			case 1: system ("cls"); 
+79 					menu1(tot,cantidad3,cantidad2,cantidad1); 
+80 					break; 
+81 			case 2: system ("cls"); 
+82 					atencion1(); 
+83 					break; 
+84 			case 0: cout<<"Volviendo atras"<<endl; 
+85 					getch (); 
+86 					system("cls"); 
+87 					principal(); 
+88 					break; 
+89 			default: cout<<"ERROR de opcion"<<endl; 
+90 					getch(); 
+91 					system("cls"); 
+92 					break; 
+93 			} 
+94 		}while ((opcion2!=1)&&(opcion2!=2)&&(opcion2!=0)); 
+95 } 
+96 
+ 
+97 
+ 
+98 
+ 
+99 void menu1(float &tot, int &cantidad3, int &cantidad2, int &cantidad1) 
+100 { 
+101 	int desayuno,seguir; 
+102 	do{ 
+103 
+ 
+104 	cout<<"            Menu"<<endl; 
+105 	cout<<"1. Desayuno 1"<<endl; 
+106 	cout<<"   Incluye:"<<endl; 
+107 	cout<<"   Precio: 30bs"<<endl; 
+108 	cout<<"2. Desayuno 2"<<endl; 
+109 	cout<<"   Incluye:"<<endl; 
+110 	cout<<"   Precio: 35bs"<<endl; 
+111 	cout<<"3. Desayuno 3"<<endl; 
+112 	cout<<"   Incluye:"<<endl; 
+113 	cout<<"   Precio 40bs:"<<endl; 
+114 	cout<<"0. Volver atras"<<endl; 
+115 	cin>>desayuno; 
+116 	switch(desayuno) 
+117 	{ 
+118 	case 1: do 
+119 			{ 
+120 				cout<<"Ingrese la cantidad de desayuno 1 que desea (maximo 200): "; 
+121 				cin>>cantidad1; 
+122 				if((cantidad1<=0)||(cantidad1>200)) 
+123 					cout<<"Cantidad no valida"<<endl; 
+124 				else  
+125 					tot=tot+(cantidad1*30); 
+126 			 
+127 			}while ((cantidad1<=0)||(cantidad1>200)); 
+128 			do 
+129 			{ 
+130 				cout<<"Desea seguir ordenando? "<<endl; 
+131 				cout<<"1. Si"<<endl; 
+132 				cout<<"2. No"<<endl; 
+133 				cin>>seguir; 
+134 				switch (seguir) 
+135 				{ 
+136 				case 1: getch(); 
+137 						system("cls"); 
+138 						menu1(tot,cantidad1,cantidad2,cantidad3); 
+139 						break; 
+140 				case 2: getch(); 
+141 						system("cls"); 
+142 						confirmar1(tot,cantidad1,cantidad2,cantidad3); 
+143 						break; 
+144 				default: cout<<"ERROR de opcion"<<endl; 
+145 						break; 
+146 				} 
+147 				getch (); 
+148 				system("cls"); 
+149 			}while ((seguir!=1)&&(seguir!=2)); 
+150 			break; 
+151 
+ 
+152 	case 2:   do 
+153 			{ 
+154 				cout<<"Ingrese la cantidad de desayuno 2 que desea (maximo 200): "; 
+155 				cin>>cantidad2; 
+156 				if((cantidad2<=0)||(cantidad2>200)) 
+157 					cout<<"Cantidad no valida"<<endl; 
+158 				else  
+159 					tot=tot+(cantidad2*35); 
+160 				 
+161 			}while ((cantidad2<=0)||(cantidad2>200)); 
+162 			do 
+163 			{ 
+164 				cout<<"Desea seguir ordenando? "<<endl; 
+165 				cout<<"1. Si"<<endl; 
+166 				cout<<"2. No"<<endl; 
+167 				cin>>seguir; 
+168 				switch (seguir) 
+169 				{ 
+170 				case 1: getch(); 
+171 						system("cls"); 
+172 						menu1(tot,cantidad1,cantidad2,cantidad3); 
+173 						break; 
+174 				case 2: getch(); 
+175 						system("cls"); 
+176 						confirmar1(tot,cantidad1,cantidad2,cantidad3); 
+177 						break; 
+178 				default: cout<<"ERROR de opcion"<<endl; 
+179 						break; 
+180 				} 
+181 				getch (); 
+182 				system("cls"); 
+183 			}while ((seguir!=1)&&(seguir!=2)); 
+184 			break; 
+185 	case 3:  do 
+186 			{ 
+187 				cout<<"Ingrese la cantidad de desayuno 3 que desea (maximo 200): "; 
+188 				cin>>cantidad3; 
+189 				if((cantidad3<=0)||(cantidad3>200)) 
+190 					cout<<"Cantidad no valida"<<endl; 
+191 				else  
+192 					tot=tot+(cantidad3*40); 
+193 				 
+194 			}while (cantidad3<=0||cantidad3>200); 
+195 			do 
+196 			{ 
+197 				cout<<"Desea seguir ordenando? "<<endl; 
+198 				cout<<"1. Si"<<endl; 
+199 				cout<<"2. No"<<endl; 
+200 				cin>>seguir; 
+201 				switch (seguir) 
+202 				{ 
+203 				case 1: getch(); 
+204 						system("cls"); 
+205 						menu1(tot,cantidad1,cantidad2,cantidad3); 
+206 						break; 
+207 				case 2: getch(); 
+208 						system("cls"); 
+209 						confirmar1(tot,cantidad1,cantidad2,cantidad3); 
+210 						break; 
+211 				default: cout<<"ERROR de opcion"; 
+212 					break; 
+213 				} 
+214 				getch (); 
+215 				system("cls"); 
+216 			}while ((seguir!=1)&&(seguir!=2)); 
+217 			break; 
+218 	case 0: cout<<"Volviendo atras"<<endl; 
+219 			getch(); 
+220 			system("cls"); 
+221 			Opcion1(); 
+222 			break; 
+223 	default: cout<<"ERROR de opcion"<<endl; 
+224 			getch(); 
+225 			system ("cls"); 
+226 					break; 
+227 	} 
+228 	}while((desayuno!=0)&&(desayuno!=1)&&(desayuno!=2)&&(desayuno!=3)); 
+229 	system ("cls"); 
+230 	getch(); 
+231 			 
+232 } 
+233 
+ 
+234 void atencion1 () 
+235 { 
+236 	int op; 
+237 	cout<<"Numero de telefono:     3391891"<<endl; 
+238 	cout<<"Direccion:              Avenida Irala esquina Tarija #801"<<endl; 
+239 	cout<<"Horarios de atencion:   7:30 - 12:00"<<endl; 
+240 	cout<<"                        14:30 - 21:00"<<endl; 
+241 	cout<<"Presione 0 para volver atras "<<endl; 
+242 	do 
+243 	{ 
+244 		cin>>op; 
+245 		if (op==0) 
+246 			{ 
+247 				system("cls"); 
+248 				Opcion1(); 
+249 			} 
+250 		else 
+251 			cout<<"Opcion no valida"; 
+252 	}while (op!=0); 
+253 
+ 
+254 } 
+255 
+ 
+256 void confirmar1(float tot, int cantidad1, int cantidad2, int cantidad3) 
+257 { 
+258 	int confirmar; 
+259 	do 
+260 	{ 
+261 		cout<<"Desea confirmar su pedido? "<<endl<<endl; 
+262 		if(cantidad1>0) 
+263 			cout<<"Desayuno 1: "<<cantidad1<<endl; 
+264 		if (cantidad2>0) 
+265 			cout<<"Desayuno 2: "<<cantidad2<<endl; 
+266 		if(cantidad3>0) 
+267 			cout<<"Desayuno 3: "<<cantidad3<<endl; 
+268 		cout<<"\nSubtotal: "<<tot<<endl<<endl; 
+269 		cout<<"1. Si"<<endl; 
+270 		cout<<"2. No"<<endl; 
+271 		cin>>confirmar; 
+272 		switch (confirmar) 
+273 		{ 
+274 		case 1: system ("cls"); 
+275 				cliente1(); 
+276 				break; 
+277 		case 2: system ("cls"); 
+278 				menu1(tot,cantidad1,cantidad2,cantidad3); 
+279 				break; 
+280 		default: cout<<"ERROR de opcion"; 
+281 				break; 
+282 		} 
+283 		getch (); 
+284 		system("cls"); 
+285 	}while ((confirmar!=1)&&(confirmar!=2)); 
+286 } 
+287 
+ 
+288 int p=0; 
+289 void cliente1() 
+290 { 
+291 	float total; 
+292 	int telefono[MAX],d,m,h,min,domicilio; 
+293 	char nombres[MAX][80], apellidos [MAX][80]; 
+294 	cout<<"              Datos del cliente"<<endl; 
+295 	cout<<"Ingrese su nombre: "; 
+296 	cin>>nombres[p]; 
+297 	cout<<"Ingrese su apellido: "; 
+298 	cin>>apellidos[p]; 
+299 	cout<<"Ingrese su numero de telefono: "; 
+300 	cin>>telefono[p]; 
+301 	fecha(d,m); 
+302 	hora(h,min); 
+303 	cout<<"Desea entrega a domicilio? (Recargo de 20bs)"<<endl; 
+304 	cout<<"1. Si"<<endl; 
+305 	cout<<"2. No"<<endl; 
+306 	cin>>domicilio; 
+307 	do 
+308 	{ 
+309 		switch (domicilio) 
+310 		{		 
+311 			case 1: delivery1(tot); 
+312 
+ 
+313 			case 2: compra1(tot); 
+314 				 
+315 			default: cout<<"ERROR de opcion"; 
+316 				break; 
+317 		}system("cls"); 
+318 		 getch(); 
+319 	}while((domicilio!=1)&&(domicilio!=2)); 
+320 
+ 
+321 
+ 
+322 	 
+323 
+ 
+324 } 
+325 
+ 
+326 void fecha(int &d, int&m) 
+327 { 
+328 	cout<<"Fecha de entrega (dia / mes): ";cin>>d;cout<<" / ";cin>>m; 
+329 	if((m>12)||(m<=0)) 
+330 	{ 
+331 		cout<<"Fecha no valida"<<endl; 
+332 		fecha(d,m); 
+333 	} 
+334 	if (m==1 || m==3 || m==5 || m==7 || m==8 || m==10 || m==12) 
+335 	{ 
+336 		if (d>31||d<=0) 
+337 		{ 
+338 			cout<<"Fecha no valida"<<endl; 
+339 			fecha(d,m); 
+340 		} 
+341 	} 
+342 	else 
+343 	{ 
+344 		if(m==2) 
+345 		{ 
+346 			if(d>28||d<=0 ) 
+347 			{ 
+348 				cout<<"Fecha no valida"<<endl; 
+349 				fecha(d,m); 
+350 			} 
+351 		} 
+352 		else 
+353 		{ 
+354 			if (d>30||d<=0) 
+355 			{ 
+356 				cout<<"Fecha no valida"<<endl; 
+357 				fecha(d,m); 
+358 			} 
+359 		} 
+360 	} 
+361 } 
+362 
+ 
+363 void hora(int&h, int&min) 
+364 { 
+365 	cout<<"Hora de entrega (maximo mediodia): ";cin>>h;cout<<" : ";cin>>min; 
+366 	if(h<7||h>12) 
+367 	{ 
+368 		cout<<"Hora no valida"<<endl; 
+369 		hora(h,min); 
+370 	} 
+371 	if (h==12&&(min>0||min<0)) 
+372 	{ 
+373 		cout<<"Hora no valida"<<endl; 
+374 		hora(h,min); 
+375 	} 
+376 	if (min<0||min>=60) 
+377 	{ 
+378 		cout<<"Hora no valida"<<endl; 
+379 		hora(h,min); 
+380 	} 
+381 	if (h==7&&min<30) 
+382 	{ 
+383 		cout<<"Hora no valida"<<endl; 
+384 		hora(h,min); 
+385 	} 
+386 } 
+387 
+ 
+388 void delivery1 (float&tot) 
+389 { 
+390 	char direccion[MAX][80]; 
+391 	cout<<"Ingrese su direccion: "; 
+392 	cin>>direccion[p]; 
+393 	tot=tot+20; 
+394 	compra1(tot); 
+395 } 
+396 			 
+397 void compra1(float tot) 
+398 { 
+399 	int compra,cantidad1,cantidad2,cantidad3; 
+400 	system("cls"); 
+401 	cout<<"Total compra: "<<tot<<endl<<endl; 
+402 	do 
+403 			{ 
+404 				cout<<"Confirmar compra"<<endl; 
+405 				cout<<"1. Si"<<endl; 
+406 				cout<<"2. No"<<endl; 
+407 				cin>>compra; 
+408 				switch (compra) 
+409 				{ 
+410 				case 1: cout<<"Gracias por usar nuestra aplicacion"; 
+411 						getch (); 
+412 						system("cls"); 
+413 						exit(0); 
+414 				case 2: menu1(tot,cantidad1,cantidad2,cantidad3); 
+415 				default: cout<<"ERROR de opcion"; 
+416 					break; 
+417 				} 
+418 				getch (); 
+419 				system("cls"); 
+420 			}while (compra!=1); 
+421 			 
+422 			getch(); 
+423 			system ("cls"); 
+424 } 
